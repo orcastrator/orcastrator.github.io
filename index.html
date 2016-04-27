@@ -3,8 +3,27 @@
 <body>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
-<h1>My First JavaScript</h1>
 
+<script>
+var xhr = new XMLHttpRequest();
+xhr.open('GET', "https://na.api.pvp.net/api/lol/na/v1.2/champion?api_key=bcfc2b43-2b28-4993-9ed6-29b5723fbb4f", true);
+xhr.send();
+
+xhr.addEventListener("readystatechange", processRequest, true);
+
+//xhr.onreadystatechange = processRequest;
+
+function processRequest(e){
+	if (xhr.readyState == 4 && xhr.status == 200) {
+		var response = JSON.parse(xhr.responseText);
+		for(var i in response.champions[0]) document.write(i + "<br>");
+		document.write(xhr.responseText);
+		document.write(response.champions[0].id);
+	}
+}
+</script>
+
+<h1>My First JavaScript</h1>
 <button type="button"
 onclick="document.getElementById('demo').innerHTML = Date()">
 Click me to display Date and Time.</button>
